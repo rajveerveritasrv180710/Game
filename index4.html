@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVerse | Premium Arcade Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader" class="loader-container">
+        <div class="loader-content">
+            <h1 class="logo-text">GAME<span class="gradient-text">VERSE</span></h1>
+            <div class="loading-bar"><div class="loading-progress"></div></div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" onclick="app.switchView('home')">
+                <i class="fa-solid to-gamepad"></i> GAME<span class="gradient-text">VERSE</span>
+            </a>
+            <div class="nav-search">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="global-search" placeholder="Search elite games...">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" onclick="app.switchView('home')"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="#" class="nav-link" onclick="app.switchView('games-hub')"><i class="fa-solid fa-gamepad"></i> Arcade</a></li>
+                <li><a href="#" class="nav-link" onclick="app.switchView('dashboard')"><i class="fa-solid fa-user-astronaut"></i> Profile</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="nav-stats-summary" onclick="app.switchView('dashboard')">
+                    <span class="badge xp-badge"><i class="fa-solid fa-star"></i> <span id="nav-xp">0</span> XP</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-layout">
+        
+        <section id="view-home" class="view-section active">
+            <div class="hero-container">
+                <div class="hero-floating-bg">
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                </div>
+                <div class="hero-content">
+                    <h2 class="hero-tagline">THE ULTIMATE ARCADE EXPERIENCE</h2>
+                    <h1 class="hero-title">UNLEASH YOUR <br><span class="gradient-text">GAMING POTENTIAL</span></h1>
+                    <p class="hero-desc">Experience next-generation glassmorphic web arcade. Play timeless classics, challenge your mental faculties, climb leaderboards, and unlock cosmic achievements directly inside your browser.</p>
+                    <div class="hero-cta-group">
+                        <button class="btn btn-primary ripple" onclick="app.switchView('games-hub')">Explore Games <i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="btn btn-secondary ripple" onclick="app.switchView('dashboard')">View Dashboard</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-ribbon">
+                <div class="stat-item">
+                    <h3 class="stat-num" data-target="15000">0</h3>
+                    <p class="stat-label">Active Players</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-num" data-target="15">0</h3>
+                    <p class="stat-label">Premium Games</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-num" data-target="10">0</h3>
+                    <p class="stat-label">Levels to Mastery</p>
+                </div>
+            </div>
+
+            <section class="section-wrapper">
+                <h2 class="section-title"><i class="fa-solid fa-layer-group text-primary"></i> Popular Categories</h2>
+                <div class="category-grid" id="category-container">
+                    </div>
+            </section>
+        </section>
+
+        <section id="view-games-hub" class="view-section">
+            <div class="hub-header">
+                <h1 class="section-title"><i class="fa-solid fa-gamepad text-primary"></i> Arcade Registry</h1>
+                <div class="filter-wrapper">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="puzzle">Puzzle</button>
+                    <button class="filter-btn" data-filter="arcade">Arcade</button>
+                    <button class="filter-btn" data-filter="easy">Easy</button>
+                    <button class="filter-btn" data-filter="medium">Medium</button>
+                    <button class="filter-btn" data-filter="hard">Hard</button>
+                </div>
+            </div>
+            <div class="games-grid" id="games-container">
+                </div>
+        </section>
+
+        <section id="view-dashboard" class="view-section">
+            <div class="dashboard-grid">
+                <div class="card glass profile-card">
+                    <div class="profile-avatar-wrapper">
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </div>
+                        <div class="level-badge-orb" id="dash-level-num">1</div>
+                    </div>
+                    <h2 class="profile-name">Elite Gamer</h2>
+                    <p class="profile-rank" id="dash-level-name">Beginner</p>
+                    
+                    <div class="xp-progress-container">
+                        <div class="xp-text-flex">
+                            <span>XP: <strong id="dash-xp-current">0</strong></span>
+                            <span id="dash-xp-next">100 XP to next rank</span>
+                        </div>
+                        <div class="xp-bar-bg"><div class="xp-bar-fill" id="dash-xp-progress"></div></div>
+                    </div>
+
+                    <div class="economy-strip">
+                        <div class="eco-item"><i class="fa-solid fa-coins text-gold"></i> <span id="dash-coins">0</span> Coins</div>
+                        <div class="eco-item"><i class="fa-solid fa-trophy text-primary"></i> <span id="dash-score">0</span> High Score</div>
+                    </div>
+                </div>
+
+                <div class="card glass metrics-card">
+                    <h3><i class="fa-solid fa-chart-simple"></i> Performance Overview</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-box">
+                            <span class="m-val" id="m-played">0</span>
+                            <span class="m-lbl">Games Played</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="m-val" id="m-winpct">0%</span>
+                            <span class="m-lbl">Win Ratio</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="m-val" id="m-fav">N/A</span>
+                            <span class="m-lbl">Favorite Game</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="m-val" id="m-time">0m</span>
+                            <span class="m-lbl">Play Time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card glass achievements-card">
+                    <h3><i class="fa-solid fa-award"></i> Trophies & Achievements</h3>
+                    <div class="achievements-flex" id="achievements-container">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-game-player" class="view-section">
+            <button class="btn btn-secondary back-hub-btn" onclick="app.switchView('games-hub')"><i class="fa-solid fa-chevron-left"></i> Back to Hub</button>
+            <div class="player-layout">
+                <div class="card glass game-frame-container">
+                    <div class="game-frame-header">
+                        <h2 id="current-game-title">Game Title</h2>
+                        <div class="game-frame-controls">
+                            <span class="game-score-board"><i class="fa-solid fa-crosshair"></i> Score: <span id="live-score">0</span></span>
+                            <button id="sound-toggle" class="btn-icon"><i class="fa-solid fa-volume-high"></i></button>
+                            <button id="game-restart-btn" class="btn btn-primary btn-sm"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                        </div>
+                    </div>
+                    <div class="game-engine-viewport" id="game-viewport">
+                        </div>
+                </div>
+                <div class="card glass instruction-card">
+                    <h3><i class="fa-solid fa-circle-info"></i> How to Play</h3>
+                    <p id="game-instructions-text">Game parameters description text goes here.</p>
+                    <div class="difficulty-indicator-strip">
+                        Complexity tier: <span id="game-difficulty-badge" class="badge">Easy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="modal-overlay" id="level-up-modal">
+        <div class="modal-card glass text-center animated-pop">
+            <div class="celebration-icon-shell"><i class="fa-solid fa-up-long level-up-arrow"></i></div>
+            <h1 class="gradient-text">LEVEL UP!</h1>
+            <p class="modal-sub">Your cognitive prowess has advanced into a higher state.</p>
+            <h2 id="modal-level-name">Expert</h2>
+            <p>You have reached Rank <strong id="modal-level-idx">5</strong></p>
+            <button class="btn btn-primary" onclick="app.closeModal('level-up-modal')">Continue Journey</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="game-over-modal">
+        <div class="modal-card glass text-center animated-pop">
+            <h1 id="go-title" class="gradient-text">VICTORY</h1>
+            <p id="go-message">You outsmarted the environment flawlessly.</p>
+            <div class="reward-flex">
+                <span class="badge xp-badge"><i class="fa-solid fa-star"></i> +<span id="go-xp">0</span> XP</span>
+                <span class="badge coin-badge"><i class="fa-solid fa-coins"></i> +<span id="go-coins">0</span> Coins</span>
+            </div>
+            <div class="modal-btn-row">
+                <button class="btn btn-secondary" onclick="app.switchView('games-hub'); app.closeModal('game-over-modal');">Exit Hub</button>
+                <button class="btn btn-primary" id="go-retry-btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 GameVerse System. Engineered using semantic responsive architectures.</p>
+            <div class="footer-socials">
+                <a href="#" aria-label="Discord Interface"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" aria-label="Twitter Grid"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="btn-icon scroll-top-btn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+    <script src="script.js"></script>
+</body>
+</html>
